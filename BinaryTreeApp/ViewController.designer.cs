@@ -26,6 +26,10 @@ namespace BinaryTreeApp
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIView NodesContainerView { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIScrollView ScrollView { get; set; }
+
 		[Action ("GenerateNodesBtn_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void GenerateNodesBtn_TouchUpInside (UIButton sender);
@@ -43,6 +47,10 @@ namespace BinaryTreeApp
 			if (NodesContainerView != null) {
 				NodesContainerView.Dispose ();
 				NodesContainerView = null;
+			}
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
 			}
 		}
 	}

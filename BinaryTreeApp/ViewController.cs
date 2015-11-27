@@ -8,7 +8,6 @@ namespace BinaryTreeApp
 {
 	public partial class ViewController : UIViewController
 	{
-		UIScrollView scrollView;
 		BinarySearchTreeView binarySearchTreeView;
 		public ViewController (IntPtr handle) : base (handle)
 		{
@@ -19,14 +18,9 @@ namespace BinaryTreeApp
 			base.ViewDidLoad ();
 			// Perform any additional setup after loading the view, typically from a nib.
 
-			scrollView = new UIScrollView();
-			scrollView.Frame = new CGRect(0,0, DropableCanvas.Frame.Width, DropableCanvas.Frame.Height);
-
 			binarySearchTreeView = new BinarySearchTreeView ();
 			binarySearchTreeView.Frame = new CGRect(0,0, DropableCanvas.Frame.Width, DropableCanvas.Frame.Height);
-			scrollView.Add (binarySearchTreeView);
-
-			DropableCanvas.AddSubview (scrollView);
+			ScrollView.Add (binarySearchTreeView);
 		}
 
 		public override void DidReceiveMemoryWarning ()

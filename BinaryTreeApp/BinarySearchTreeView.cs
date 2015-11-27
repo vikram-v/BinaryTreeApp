@@ -27,13 +27,15 @@ namespace BinaryTreeApp
 
 		void initialize()
 		{
-			this.BackgroundColor = UIColor.Blue;
+			this.BackgroundColor = UIColor.LightGray;
 		}
 
 		public void InsertNode(int data)
 		{
-			var newNode = new NodeView (data);
+			if (Contains (data))
+				return;
 
+			var newNode = new NodeView (data);
 			AddSubview (newNode);
 
 			if (root == null) {
@@ -138,7 +140,6 @@ namespace BinaryTreeApp
 			SetNeedsDisplay ();
 		}
 
-
 		void SetFrame(NodeView node, CGRect frame)
 		{
 			node.Frame = frame;
@@ -146,13 +147,41 @@ namespace BinaryTreeApp
 			if (node.LeftChild != null) {
 				var nodeHeight = HeightOfTheNode (node.LeftChild) + 1;
 
+				var nodeHeightForParentRight = HeightOfTheNode (node.RightChild) + 1;
+
+				if (nodeHeightForParentRight > nodeHeight)
+					nodeHeight = nodeHeightForParentRight;
+					
 				SetFrame (node.LeftChild, new CGRect (frame.X - (nodeHeight * NodeWidth), frame.Y + NodeHeight + HeightDistanceBetweenLevels , NodeWidth, NodeHeight));
 			}
 					
 			if (node.RightChild != null) {
 				var nodeHeight = HeightOfTheNode (node.RightChild) + 1;
 
+				var nodeHeightForParentLeft = HeightOfTheNode (node.LeftChild) + 1;
+
+				if (nodeHeightForParentLeft > nodeHeight)
+					nodeHeight = nodeHeightForParentLeft;
+				
 				SetFrame (node.RightChild, new CGRect (frame.X + (NodeWidth * nodeHeight), frame.Y + NodeHeight + HeightDistanceBetweenLevels , NodeWidth, NodeHeight));
+			}
+		}
+
+		bool Contains(int data)
+		{
+			current = root; 
+			while (true) 
+			{
+				if (current == null)
+					return false;
+				
+				if (current.Data == data)
+					return true;
+
+				if (data > current.Data)
+					current = current.RightChild;
+				else
+					current = current.LeftChild;
 			}
 		}
 	}

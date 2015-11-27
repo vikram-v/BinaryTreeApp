@@ -29,7 +29,48 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83">
                                 <rect key="frame" x="40" y="145" width="520" height="415"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.83529411764705885" green="0.83529411764705885" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="246" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="240"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <rect key="frame" x="0.0" y="1" width="943" height="582"/>
+                                        </variation>
+                                    </scrollView>
+                                </subviews>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <rect key="frame" x="40" y="145" width="944" height="583"/>
+                                    <mask key="subviews">
+                                        <include reference="246"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="247"/>
+                                        <include reference="248"/>
+                                        <include reference="251"/>
+                                        <include reference="252"/>
+                                    </mask>
+                                </variation>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="246"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="247"/>
+                                        <exclude reference="248"/>
+                                        <exclude reference="251"/>
+                                        <exclude reference="252"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="247" firstItem="246" firstAttribute="leading" secondItem="83" secondAttribute="leading"/>
+                                    <constraint id="248" firstItem="83" firstAttribute="bottom" secondItem="246" secondAttribute="bottom"/>
+                                    <constraint id="251" firstItem="83" firstAttribute="trailing" secondItem="246" secondAttribute="trailing" constant="241">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="1"/>
+                                    </constraint>
+                                    <constraint id="252" firstItem="246" firstAttribute="top" secondItem="83" secondAttribute="top" constant="34">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="1"/>
+                                    </constraint>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                                 <rect key="frame" x="185" y="30" width="375" height="75"/>
@@ -69,6 +110,7 @@
                         <outlet property="DropableCanvas" destination="83" id="name-outlet-83"/>
                         <outlet property="GenerateNodesBtn" destination="3" id="name-outlet-3"/>
                         <outlet property="NodesContainerView" destination="4" id="name-outlet-4"/>
+                        <outlet property="ScrollView" destination="246" id="name-outlet-246"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
