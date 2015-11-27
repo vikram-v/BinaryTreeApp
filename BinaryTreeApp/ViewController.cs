@@ -8,6 +8,8 @@ namespace BinaryTreeApp
 {
 	public partial class ViewController : UIViewController
 	{
+		UIScrollView scrollView;
+		BinarySearchTreeView binarySearchTreeView;
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -16,6 +18,15 @@ namespace BinaryTreeApp
 		{
 			base.ViewDidLoad ();
 			// Perform any additional setup after loading the view, typically from a nib.
+
+			scrollView = new UIScrollView();
+			scrollView.Frame = new CGRect(0,0, DropableCanvas.Frame.Width, DropableCanvas.Frame.Height);
+
+			binarySearchTreeView = new BinarySearchTreeView ();
+			binarySearchTreeView.Frame = new CGRect(0,0, DropableCanvas.Frame.Width, DropableCanvas.Frame.Height);
+			scrollView.Add (binarySearchTreeView);
+
+			DropableCanvas.AddSubview (scrollView);
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -51,7 +62,7 @@ namespace BinaryTreeApp
 
 		#region Touch Events
 
-		UIView currentMovingNode;
+		CircleView currentMovingNode;
 		CGRect currentMovingNodeOriginalPosition;
 		bool nodeIsMoving;
 		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
@@ -65,7 +76,7 @@ namespace BinaryTreeApp
 			var locationinContainerView = touch.LocationInView (NodesContainerView);
 
 			//check which subview falls under this
-			currentMovingNode = NodesContainerView.Subviews.FirstOrDefault(node=>node.Frame.Contains(locationinContainerView));
+			currentMovingNode = NodesContainerView.Subviews.FirstOrDefault(node=>node.Frame.Contains(locationinContainerView)) as CircleView;
 			if (currentMovingNode != null) {
 				nodeIsMoving = true;
 				currentMovingNodeOriginalPosition = currentMovingNode.Frame;
@@ -103,6 +114,9 @@ namespace BinaryTreeApp
 
 				UIAlertView alert = new UIAlertView ("BST", "Adding Node to Tree",null,"Ok");
 				alert.Show ();
+
+
+				binarySearchTreeView.InsertNode (int.Parse (currentMovingNode.Text));
 			} 
 			else 
 			{

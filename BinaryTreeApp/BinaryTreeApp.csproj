@@ -101,6 +101,8 @@
     <Compile Include="CircleView.cs" />
     <Compile Include="RandomValueGenerator.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="NodeView.cs" />
+    <Compile Include="BinarySearchTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -11,4 +11,3 @@ namespace BinaryTreeApp
 		public Node RightChild{ get; set; }
 	}
 }
-
