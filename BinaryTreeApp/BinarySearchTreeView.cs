@@ -77,8 +77,9 @@ namespace BinaryTreeApp
 
 			var parent = (this.Superview as UIScrollView);
 
-			if (parent != null)
+			if (parent != null) {
 				parent.ContentSize = new CGSize (Frame.Width, Frame.Height);
+			}
 
 			SetNeedsLayout ();
 			SetNeedsDisplay ();
@@ -134,8 +135,14 @@ namespace BinaryTreeApp
 			//start with root node and set the frame for its children
 			var treeHeight = HeightOfTheNode (root);
 
-			if (treeHeight != -1)
+			if (treeHeight != -1) {
 				SetFrame (root, new CGRect (((Math.Pow (2, treeHeight) / 2)) * 2 * NodeWidth, 0, NodeWidth, NodeHeight));
+
+				var parent = (this.Superview as UIScrollView);
+				if (parent != null) {
+					parent.ScrollRectToVisible (new CGRect(root.Frame.X + 150 , root.Frame.Y,root.Frame.Width,root.Frame.Height), true);
+				}
+			}
 
 			SetNeedsDisplay ();
 		}
@@ -183,6 +190,16 @@ namespace BinaryTreeApp
 				else
 					current = current.LeftChild;
 			}
+		}
+
+		public void ClearAll()
+		{
+			foreach (var subview in Subviews)
+				subview.RemoveFromSuperview ();
+
+			root = null;
+
+			SetNeedsDisplay ();
 		}
 	}
 }

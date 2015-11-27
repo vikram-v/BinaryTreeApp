@@ -16,6 +16,10 @@ namespace BinaryTreeApp
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton ClearAllBtn { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIView DropableCanvas { get; set; }
 
 		[Outlet]
@@ -30,12 +34,20 @@ namespace BinaryTreeApp
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIScrollView ScrollView { get; set; }
 
+		[Action ("ClearAllBtn_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void ClearAllBtn_TouchUpInside (UIButton sender);
+
 		[Action ("GenerateNodesBtn_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void GenerateNodesBtn_TouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (ClearAllBtn != null) {
+				ClearAllBtn.Dispose ();
+				ClearAllBtn = null;
+			}
 			if (DropableCanvas != null) {
 				DropableCanvas.Dispose ();
 				DropableCanvas = null;

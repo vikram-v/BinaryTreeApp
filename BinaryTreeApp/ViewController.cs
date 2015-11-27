@@ -106,10 +106,6 @@ namespace BinaryTreeApp
 				//Remove this view from superview
 				currentMovingNode.RemoveFromSuperview();
 
-				UIAlertView alert = new UIAlertView ("BST", "Adding Node to Tree",null,"Ok");
-				alert.Show ();
-
-
 				binarySearchTreeView.InsertNode (int.Parse (currentMovingNode.Text));
 			} 
 			else 
@@ -130,6 +126,11 @@ namespace BinaryTreeApp
 			nodeIsMoving = false;
 		}
 
+
+		partial void ClearAllBtn_TouchUpInside (UIButton sender)
+		{
+			binarySearchTreeView.ClearAll();
+		}
 		#endregion
 	}
 }
